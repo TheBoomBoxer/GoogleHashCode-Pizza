@@ -17,7 +17,7 @@ public class Pizza {
 	public void makePizza()
 	{
 		try {
-			Scanner sc = new Scanner(new File("pizza.txt"));
+			Scanner sc = new Scanner(new File("big.in"));
 			
 			rows = sc.nextInt();
 			cols = sc.nextInt();
@@ -27,27 +27,30 @@ public class Pizza {
 			pizza = new char[rows][cols];
 			int i = 0;
 			int j=0;
-			char ingr;
-			while(sc.hasNext())
+			String ingr;
+			while(sc.hasNextLine())
 			{
-				ingr = sc.next().charAt(0);
-				if(ingr == 'T')
-				{
-					tom++;
-				}
-				else
-				{
-					mush++;
-				}
 				
-				pizza[i][j] = ingr;
-				
-				j++;
-				
-				if(j == cols)
+				ingr = sc.nextLine();
+				for(char a:ingr.toCharArray())
 				{
-					j = 0;
-					i++;
+					if(a == 'T')
+					{
+						tom++;
+					}
+					else
+					{
+						mush++;
+					}
+					pizza[i][j] = a;
+					
+					j++;
+					
+					if(j == cols)
+					{
+						j = 0;
+						i++;
+					}
 				}
 			}
 			sc.close();
@@ -59,26 +62,10 @@ public class Pizza {
 		
 	}
 	
-	private String showArray()
-	{
-		StringBuilder sc = new StringBuilder();
-		
-		for(int i = 0; i < rows; i++)
-		{
-			for(int j = 0; j < cols; j++)
-			{
-				sc.append(pizza[i][j]+" ");
-			}
-			sc.append("\n");
-		}
-		
-		return sc.toString();
-	}
-	
 	public String toString()
 	{
 		return "Rows: " + rows + " Cols: " + cols + " Min Ingredient: " + 
-				min + " Max Cells: " + max + "\nTomatoes: " + tom + " Mushrooms: "+ mush + "\nPizza: \n" + showArray();	
+				min + " Max Cells: " + max + "\nTomatoes: " + tom + " Mushrooms: "+ mush;	
 	}
 
 }
