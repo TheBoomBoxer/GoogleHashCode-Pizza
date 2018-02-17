@@ -1,0 +1,4 @@
+3 5 1 6
+T T T T T
+T M M M T
+T T T T T
