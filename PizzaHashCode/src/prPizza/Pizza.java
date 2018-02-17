@@ -17,7 +17,7 @@ public class Pizza {
 	public void makePizza()
 	{
 		try {
-			Scanner sc = new Scanner(new File("big.in"));
+			Scanner sc = new Scanner(new File("small.in"));
 			
 			rows = sc.nextInt();
 			cols = sc.nextInt();
@@ -62,10 +62,18 @@ public class Pizza {
 		
 	}
 	
+	private int maxSlices ()
+	{
+		float tam = rows * cols;
+		float div = tam / max;
+		
+		return (int) Math.ceil(div);
+	}
+	
 	public String toString()
 	{
 		return "Rows: " + rows + " Cols: " + cols + " Min Ingredient: " + 
-				min + " Max Cells: " + max + "\nTomatoes: " + tom + " Mushrooms: "+ mush;	
+				min + " Max Cells: " + max + "\nTomatoes: " + tom + " Mushrooms: "+ mush + " Max Slices: " + maxSlices();	
 	}
 
 }
